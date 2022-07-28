@@ -45,7 +45,7 @@ function Homepage(){
 						<Jobcategories />
 					</div>
 				</div>	
-				<div className="section-full content-inner-2 call-to-action overlay-black-dark text-white text-center bg-img-fix" style={{backgroundImage:"url(" + bnr2 + ")"}}>
+				{/* <div className="section-full content-inner-2 call-to-action overlay-black-dark text-white text-center bg-img-fix" style={{backgroundImage:"url(" + bnr2 + ")"}}>
 					<div className="container">
 						<div className="row">
 							<div className="col-lg-12">
@@ -55,9 +55,9 @@ function Homepage(){
 							</div>
 						</div>
 					</div>
-				</div>
-				<Jobsection />
-				<div className="section-full p-tb70 overlay-black-dark text-white text-center bg-img-fix" style={{backgroundImage: "url(" + bnr3 + ")"}}>
+				</div> */}
+				{/* <Jobsection /> */}
+				{/* <div className="section-full p-tb70 overlay-black-dark text-white text-center bg-img-fix" style={{backgroundImage: "url(" + bnr3 + ")"}}>
 					<div className="container">
 						<div className="section-head text-center text-white">
 							<h2 className="m-b5">Testimonials</h2>
@@ -65,8 +65,8 @@ function Homepage(){
 						</div>
 						<Owltestimonial />
 					</div>
-				</div>
-				<div className="section-full content-inner-2 overlay-white-middle">
+				</div> */}
+				{/* <div className="section-full content-inner-2 overlay-white-middle">
 					<div className="container">
 						<div className="section-head text-black text-center">
 							<h2 className="text-uppercase m-b0">Our Latest Blog</h2>
@@ -74,7 +74,7 @@ function Homepage(){
 						</div>
 						<Latestblogowl />
 					</div>
-				</div>	
+				</div>	 */}
 			</div>
 			<Footer />
 		</>	
