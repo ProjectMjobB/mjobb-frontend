@@ -1,17 +1,17 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import Header from './../Layout/Header';
-import Footer from './../Layout/Footer';
-import Jobcategories from './../Element/Jobcategories';
-import Jobsection from './../Element/Jobsection';
-import Owltestimonial from './../Element/Owlblog1';
-import Latestblogowl from './../Element/Owlblog2';
+import Header from '../Layout/Header';
+import Footer from '../Layout/Footer';
+import Jobcategories from '../Element/Jobcategories';
+import Jobsection from '../Element/Jobsection';
+import Owltestimonial from '../Element/Owlblog1';
+import Latestblogowl from '../Element/Owlblog2';
 
 var bnr1 = require('./../../images/main-slider/slide1.jpg');
 var bnr2 = require('./../../images/background/bg4.jpg');
 var bnr3 = require('./../../images/background/bg3.jpg');
 
-function Homepage2(){
+function Homepage(){
 	return(
 		<>
 			<Header />	
@@ -81,4 +81,4 @@ function Homepage2(){
 	)
 }
 
-export default Homepage2;
+export default Homepage;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Homepage from './Pages/Homepage1';
-import Homepage2 from './Pages/Homepage2';
+import Homepage2 from './Pages/Homepage';
 
 import Jobprofile from './Pages/Jobprofile';
 import Jobmyresume from './Pages/Jobmyresume';
