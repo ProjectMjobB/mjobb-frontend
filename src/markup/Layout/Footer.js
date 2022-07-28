@@ -6,7 +6,8 @@ function Footer(){
 		<footer className="site-footer">
 			<div className="footer-top">
 				<div className="container">
-					<div className="row">
+					<div className="row" style={{ alignItems: 'center',
+        justifyContent: 'center',}}>
 						<div className="col-xl-5 col-lg-4 col-md-12 col-sm-12">
 							<div className="widget">
 								<img src={require("./../../images/logo-white.png")} width="180" className="m-b15" alt=""/>
@@ -31,26 +32,26 @@ function Footer(){
 								</ul>
 							</div>
 						</div>
-						<div className="col-xl-5 col-lg-5 col-md-8 col-sm-8 col-12">
+						<div className="col-xl-5 col-lg-8 col-md-4 col-sm-12 col-12">
 							<div className="widget border-0">
 								<h5 className="m-b30 text-white">Frequently Asked Questions</h5>
 								<ul className="list-2 list-line">
 									<li><Link to={''}>Privacy & Seurty</Link></li>
 									<li><Link to={''}>Terms of Serice</Link></li>
 									<li><Link to={''}>Communications</Link></li>
-									<li><Link to={''}>Referral Terms</Link></li>
-									<li><Link to={''}>Lending Licnses</Link></li>
-									<li><Link to={''}>Support</Link></li>
-									<li><Link to={''}>How It Works</Link></li>
-									<li><Link to={''}>For Employers</Link></li>
-									<li><Link to={''}>Underwriting</Link></li>
+									{/* <li><Link to={''}>Referral Terms</Link></li> */}
+									{/* <li><Link to={''}>Lending Licnses</Link></li> */}
+									{/* <li><Link to={''}>Support</Link></li> */}
+									{/* <li><Link to={''}>How It Works</Link></li> */}
+									{/* <li><Link to={''}>For Employers</Link></li> */}
+									{/* <li><Link to={''}>Underwriting</Link></li> */}
 									<li><Link to={''}>Contact Us</Link></li>
-									<li><Link to={''}>Lending Licnses</Link></li>
-									<li><Link to={''}>Support</Link></li>
+									{/* <li><Link to={''}>Lending Licnses</Link></li> */}
+									{/* <li><Link to={''}>Support</Link></li> */}
 								</ul>
 							</div>
 						</div>
-						<div className="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-12">
+						{/* <div className="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-12">
 							<div className="widget border-0">
 								<h5 className="m-b30 text-white">Find Jobs</h5>
 								<ul className="list-2 w10 list-line">
@@ -62,21 +63,12 @@ function Footer(){
 									<li><Link to={''}>Vacatures China</Link></li>
 								</ul>
 							</div>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>
 			
-			<div className="footer-bottom">
-				<div className="container">
-					<div className="row">
-						<div className="col-lg-12 text-center">
-							<span> © Copyright by <i className="fa fa-heart m-lr5 text-red heart"></i>
-							<Link to={''}>DexignZone </Link> All rights reserved.</span> 
-						</div>
-					</div>
-				</div>
-			</div>
+
 		</footer>
 	)
 }
