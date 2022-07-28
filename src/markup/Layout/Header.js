@@ -79,7 +79,7 @@ class Header extends Component{
 									<ul className="nav navbar-nav">
 										<li className=""> 
 										
-											<Link to={'index-2'} > Home <i className="dez-page"></i></Link>
+											<Link to={'home'} > Home <i className="dez-page"></i></Link>
 											{/* <ul className="sub-menu">
 												<li><Link to={"./"} className="dez-page">Home 1</Link></li>
 												<li><Link to={"/index-2"} className="dez-page">Home 2</Link></li>

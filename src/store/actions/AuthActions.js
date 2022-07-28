@@ -25,7 +25,7 @@ export function signupAction(email, password, history) {
                 history,
             );
             dispatch(confirmedSignupAction(response.data));
-            history.push('/index-2');
+            history.push('/home');
         })
         .catch((error) => {
             const errorMessage = formatError(error.response.data);
@@ -53,7 +53,7 @@ export function loginAction(email, password, history) {
                     history,
                 );
                 dispatch(loginConfirmedAction(response.data));
-				history.push('/index-2');                
+				history.push('/home');                
             })
             .catch((error) => {
 				//console.log(error);
