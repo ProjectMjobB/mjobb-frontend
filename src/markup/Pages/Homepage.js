@@ -6,6 +6,7 @@ import Jobcategories from '../Element/Jobcategories';
 import Jobsection from '../Element/Jobsection';
 import Owltestimonial from '../Element/Owlblog1';
 import Latestblogowl from '../Element/Owlblog2';
+import Featureblog from './../Element/Featureblog';
 
 var bnr1 = require('./../../images/main-slider/slide1.jpg');
 var bnr2 = require('./../../images/background/bg4.jpg');
@@ -45,6 +46,7 @@ function Homepage(){
 						<Jobcategories />
 					</div>
 				</div>	
+				<Featureblog />
 				{/* <div className="section-full content-inner-2 call-to-action overlay-black-dark text-white text-center bg-img-fix" style={{backgroundImage:"url(" + bnr2 + ")"}}>
 					<div className="container">
 						<div className="row">
