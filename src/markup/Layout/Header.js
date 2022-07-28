@@ -79,11 +79,11 @@ class Header extends Component{
 									<ul className="nav navbar-nav">
 										<li className=""> 
 										
-											<Link to={'#'} >Home <i className="fa fa-chevron-down"></i></Link>
-											<ul className="sub-menu">
+											<Link to={'index-2'} > Home <i className="dez-page"></i></Link>
+											{/* <ul className="sub-menu">
 												<li><Link to={"./"} className="dez-page">Home 1</Link></li>
 												<li><Link to={"/index-2"} className="dez-page">Home 2</Link></li>
-											</ul>
+											</ul> */}
 										</li>
 										<li >
 											<Link to={'#'} >For Candidates <i className="fa fa-chevron-down"></i></Link>
