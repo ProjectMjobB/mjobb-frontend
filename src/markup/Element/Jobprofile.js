@@ -35,12 +35,6 @@ function Jobprofile(){
 					<li><a href="jobs-applied-job.html">
 						<i className="fa fa-briefcase" aria-hidden="true"></i> 
 						<span>Applied Jobs</span></a></li>
-					<li><a href="jobs-alerts.html" className="active">
-						<i className="fa fa-bell-o" aria-hidden="true"></i> 
-						<span>Job Alerts</span></a></li>
-					<li><a href="jobs-cv-manager.html">
-						<i className="fa fa-id-card-o" aria-hidden="true"></i> 
-						<span>CV Manager</span></a></li>
 					<li><a href="jobs-change-password.html">
 						<i className="fa fa-key" aria-hidden="true"></i> 
 						<span>Change Password</span></a></li>

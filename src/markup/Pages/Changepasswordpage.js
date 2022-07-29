@@ -49,14 +49,7 @@ function Changepasswordpage(){
 													<i className="fa fa-briefcase" ></i> 
 													<span>Applied Jobs</span></Link>
 												</li>
-												<li><Link to={"/jobs-alerts"}>
-													<i className="fa fa-bell-o" ></i> 
-													<span>Job Alerts</span></Link>
-												</li>
-												<li><Link to={"/jobs-cv-manager"}>
-													<i className="fa fa-id-card-o" ></i> 
-													<span>CV Manager</span></Link>
-												</li>
+												
 												<li><Link to={"/jobs-change-password"} className="active">
 													<i className="fa fa-key" ></i> 
 													<span>Change Password</span>
