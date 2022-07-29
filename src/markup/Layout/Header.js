@@ -117,9 +117,6 @@ class Header extends Component{
 												<li><Link to={"/free-job-alerts"} className="dez-page">free job alerts <span className="new-page">New</span></Link></li>
 												<li><Link to={"#"} className="dez-page">Browse Job <i className="fa fa-angle-right"></i></Link>
 													<ul className="sub-menu">
-														<li><Link to={"/browse-job-list"} className="dez-page">browse job list</Link></li>
-														<li><Link to={"/browse-job-grid"} className="dez-page">browse job grid <span className="new-page">New</span></Link></li>
-														<li><Link to={"/browse-job-filter-list"} className="dez-page">browse filter list <span className="new-page">New</span></Link></li>
 														<li><Link to={"/browse-job-filter-grid"} className="dez-page">browse filter grid <span className="new-page">New</span></Link></li>
 													</ul>
 												</li>
