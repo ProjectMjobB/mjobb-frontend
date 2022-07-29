@@ -57,7 +57,7 @@ function Jobmyresume(){
 											<li><i className="ti-email"></i> info@example.com</li>
 										</ul>
 										<div className="progress-box m-t10">
-											<div className="progress-info">Profile Strength (Average)<span>70%</span></div>
+											{/* <div className="progress-info">Profile Strength (Average)<span>70%</span></div> */}
 											<div className="progress">
 												<div className="progress-bar bg-primary" style={{width: "80%",}} role="progressbar" ></div>
 											</div>
@@ -187,6 +187,8 @@ function Jobmyresume(){
 									<Listingsidebar />
 								</div>
 								<div className="col-xl-9 col-lg-8 col-md-8 col-sm-12">
+								<Link to={"./"} className="site-button right-arrow button-sm float-right">Back</Link>
+
 									<div id="resume_headline_bx" className=" job-bx bg-white m-b30">
 										<div className="d-flex">
 											<h5 className="m-b15">Resume Headline</h5>
