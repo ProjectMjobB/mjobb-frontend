@@ -36,12 +36,12 @@ function Profilesidebar(){
 						<li><Link to={"/jobs-applied-job"}>
 							<i className="fa fa-briefcase" aria-hidden="true"></i> 
 							<span>Applied Jobs</span></Link></li>
-						<li><Link to={"/jobs-alerts"}>
+						{/* <li><Link to={"/jobs-alerts"}>
 							<i className="fa fa-bell-o" aria-hidden="true"></i> 
 							<span>Job Alerts</span></Link></li>
 							<li><Link to={"/jobs-cv-manager"}>
 							<i className="fa fa-id-card-o" aria-hidden="true"></i> 
-							<span>CV Manager</span></Link></li>
+							<span>CV Manager</span></Link></li> */}
 						<li><Link to={"/jobs-change-password"}>
 							<i className="fa fa-key" aria-hidden="true"></i> 
 							<span>Change Password</span></Link></li>
