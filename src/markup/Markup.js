@@ -19,7 +19,6 @@ import Companymanage from './Pages/Companymanage';
 import Companytransactions from './Pages/Companytransactions';
 import Browsecandidates from './Pages/Browsecandidates';
 
-
 import Aboutus from './Pages/Aboutus';
 import Jobdetail from './Pages/Jobdetail';
 import Companies from './Pages/Companies';
@@ -48,7 +47,6 @@ import Error404 from './Pages/Error404';
 
 import Contact from './Pages/Contact';
 
-
 import Blogclassic from './Pages/Blogclassic';
 import Blogclassicsidebar from './Pages/Blogclassicsidebar';
 import Blogdetailgrid from './Pages/Blogdetailgrid';
@@ -56,75 +54,141 @@ import Blogdetailgridsidebar from './Pages/Blogdetailgridsidebar';
 import Blogleftimg from './Pages/Blogleftimg';
 import Blogdetail from './Pages/Blogdetail';
 import ScrollToTop from './Element/ScrollToTop';
+import Loginpage2 from './Pages/Loginpage2';
+import AuthenticatedRoute from '../services/AuthenticatedRoute';
+const Markup = () => {
+  return (
+    <>
+      <div className="page-wraper">
+        <Switch>
+          <AuthenticatedRoute path="/" exact component={Homepage2} />
+          <AuthenticatedRoute path="/index-2" component={Homepage} />
+          <AuthenticatedRoute path="/home" component={Homepage2} />
 
-const Markup= () => {
-	return(
-		<>
-			<div className="page-wraper">
-				<Switch>
-					<Route path='/' exact component={Homepage} />
-						 <Route path='/index-2' exact component={Homepage} />
-					<Route path='/home' exact component={Homepage2} />
-					
-					<Route path='/jobs-profile' exact component={Jobprofile} />
-					<Route path='/jobs-my-resume' exact component={Jobmyresume} />
-					<Route path='/jobs-applied-job' exact component={Jobsappliedjob} />
-					<Route path='/jobs-alerts' exact component={Jobsalert} />
-					<Route path='/jobs-saved-jobs' exact component={Jobsavedjobs} />
-					<Route path='/jobs-cv-manager' exact component={Jobcvmanager} />
-					<Route path='/jobs-change-password' exact component={Changepasswordpage} />
-						
-						
-					<Route path='/company-profile' exact component={Companyprofile} />
-					<Route path='/company-resume' exact component={Companyresume} />
-					<Route path='/company-post-jobs' exact component={Componypostjobs} />
-					<Route path='/company-manage-job' exact component={Companymanage} />
-					<Route path='/company-transactions' exact component={Companytransactions} />
-					<Route path='/browse-candidates' exact component={Browsecandidates} />
-					
-					
-					<Route path='/about-us' exact component={Aboutus} />
-					<Route path='/job-detail' exact component={Jobdetail} />
-					<Route path='/companies' exact component={Companies} />
-					<Route path='/free-job-alerts' exact component={Freejobalerts} />
-					<Route path='/browse-job-list' exact component={Browsejoblist} />
-					<Route path='/browse-job-grid' exact component={Browsejobgrid} />
-					<Route path='/browse-job-filter-list' exact component={Browsejobfilterlist} />
-					<Route path='/browse-job-filter-grid' exact component={Browsejobfiltergrid} />
-					
-					<Route path='/category-all-jobs' exact component={Categoryalljob} />
-					<Route path='/category-company-jobs' exact component={Categorycompanyjob} />
-					<Route path='/category-designations-jobs' exact component={Categorydesignationsjob} />
-					<Route path='/category-jobs' exact component={Categoryjobs} />
-					<Route path='/category-location-jobs' exact component={Categorylocationjobs} />
-					<Route path='/category-skill-jobs' exact component={Categoryskilljobs} />
-					
-<Route path='/portfolio-grid-2' exact component={Portfoliogrid2} /> 
-					
-					{/* <Route path='/login' exact component={Loginpage2 } />
-					<Route path='/login-2' exact component={Loginpage1} />
-					<Route path='/login-3' exact component={Loginpage3} /> */}
-					
-					 <Route path='/register' exact component={Register1} />
-					<Route path='/register-2' exact component={Register2} />
-					<Route path='/error-404' exact component={Error404} />
-					
-					<Route path='/contact' exact component={Contact} />
-					
-					<Route path='/blog-classic' exact component={Blogclassic} />
-					<Route path='/blog-classic-sidebar' exact component={Blogclassicsidebar} />
-					<Route path='/blog-detailed-grid' exact component={Blogdetailgrid} />
-					<Route path='/blog-detailed-grid-sidebar' exact component={Blogdetailgridsidebar} />
-					<Route path='/blog-left-img' exact component={Blogleftimg} />
-					<Route path='/blog-details' exact component={Blogdetail} /> 
-					
-				</Switch>
-			</div>
-			<ScrollToTop />
-		</>	
-	)
-	
-	
-}
+          <AuthenticatedRoute path="/jobs-profile" component={Jobprofile} />
+          <AuthenticatedRoute path="/jobs-my-resume" component={Jobmyresume} />
+          <AuthenticatedRoute
+            path="/jobs-applied-job"
+            component={Jobsappliedjob}
+          />
+          <AuthenticatedRoute path="/jobs-alerts" component={Jobsalert} />
+          <AuthenticatedRoute
+            path="/jobs-saved-jobs"
+            component={Jobsavedjobs}
+          />
+          <AuthenticatedRoute
+            path="/jobs-cv-manager"
+            component={Jobcvmanager}
+          />
+          <AuthenticatedRoute
+            path="/jobs-change-password"
+            component={Changepasswordpage}
+          />
+
+          <AuthenticatedRoute
+            path="/company-profile"
+            component={Companyprofile}
+          />
+          <AuthenticatedRoute
+            path="/company-resume"
+            component={Companyresume}
+          />
+          <AuthenticatedRoute
+            path="/company-post-jobs"
+            component={Componypostjobs}
+          />
+          <AuthenticatedRoute
+            path="/company-manage-job"
+            component={Companymanage}
+          />
+          <AuthenticatedRoute
+            path="/company-transactions"
+            component={Companytransactions}
+          />
+          <AuthenticatedRoute
+            path="/browse-candidates"
+            component={Browsecandidates}
+          />
+
+          <AuthenticatedRoute path="/about-us" component={Aboutus} />
+          <AuthenticatedRoute path="/job-detail" component={Jobdetail} />
+          <AuthenticatedRoute path="/companies" component={Companies} />
+          <AuthenticatedRoute
+            path="/free-job-alerts"
+            component={Freejobalerts}
+          />
+          <AuthenticatedRoute
+            path="/browse-job-list"
+            component={Browsejoblist}
+          />
+          <AuthenticatedRoute
+            path="/browse-job-grid"
+            component={Browsejobgrid}
+          />
+          <AuthenticatedRoute
+            path="/browse-job-filter-list"
+            component={Browsejobfilterlist}
+          />
+          <AuthenticatedRoute
+            path="/browse-job-filter-grid"
+            component={Browsejobfiltergrid}
+          />
+
+          <AuthenticatedRoute
+            path="/category-all-jobs"
+            component={Categoryalljob}
+          />
+          <AuthenticatedRoute
+            path="/category-company-jobs"
+            component={Categorycompanyjob}
+          />
+          <AuthenticatedRoute
+            path="/category-designations-jobs"
+            component={Categorydesignationsjob}
+          />
+          <AuthenticatedRoute path="/category-jobs" component={Categoryjobs} />
+          <AuthenticatedRoute
+            path="/category-location-jobs"
+            component={Categorylocationjobs}
+          />
+          <AuthenticatedRoute
+            path="/category-skill-jobs"
+            component={Categoryskilljobs}
+          />
+
+          <AuthenticatedRoute
+            path="/portfolio-grid-2"
+            component={Portfoliogrid2}
+          />
+
+          <Route path="/login" component={Loginpage2} />
+
+          <Route path="/register1" component={Register1} />
+          <AuthenticatedRoute path="/register-2" component={Register2} />
+          <AuthenticatedRoute path="/error-404" component={Error404} />
+
+          <AuthenticatedRoute path="/contact" component={Contact} />
+
+          <AuthenticatedRoute path="/blog-classic" component={Blogclassic} />
+          <AuthenticatedRoute
+            path="/blog-classic-sidebar"
+            component={Blogclassicsidebar}
+          />
+          <AuthenticatedRoute
+            path="/blog-detailed-grid"
+            component={Blogdetailgrid}
+          />
+          <AuthenticatedRoute
+            path="/blog-detailed-grid-sidebar"
+            component={Blogdetailgridsidebar}
+          />
+          <AuthenticatedRoute path="/blog-left-img" component={Blogleftimg} />
+          <AuthenticatedRoute path="/blog-details" component={Blogdetail} />
+        </Switch>
+      </div>
+      <ScrollToTop />
+    </>
+  );
+};
 
 export default Markup;
