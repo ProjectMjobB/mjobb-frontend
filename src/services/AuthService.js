@@ -1,6 +1,10 @@
 import axios from 'axios';
 import swal from 'sweetalert';
-import { loginConfirmedAction, logout } from '../store/actions/AuthActions';
+import {
+  loginConfirmedAction,
+  logout,
+  userConfirmedAction,
+} from '../store/actions/AuthActions';
 
 export function signUp(payload) {
   const data = payload;
@@ -29,7 +33,7 @@ export function getUserInfo(token) {
 }
 
 export function formatError(errorResponse) {
-  switch (errorResponse.error.message) {
+  switch (errorResponse.error) {
     case 'EMAIL_EXISTS':
       //return 'Email already exists';
       swal('Oops', 'Email already exists', 'error');
@@ -42,9 +46,10 @@ export function formatError(errorResponse) {
       //return 'Invalid Password';
       swal('Oops', 'Invalid Password', 'error', { button: 'Try Again!' });
       break;
-    case 'USER_DISABLED':
+    case 'invalid_grant':
       return 'User Disabled';
-
+    case 'unauthorized':
+      return 'Auth Errors';
     default:
       return '';
   }
@@ -76,7 +81,9 @@ export function runLogoutTimer(dispatch, timer, history) {
   }, timer);
 }
 
-export function checkAutoLogin(dispatch, history) {
+export function checkAutoLogin(dispatch, props) {
+  console.log(props);
+  const history = props.history;
   const tokenDetailsString = localStorage.getItem('userDetails');
   let tokenDetails = '';
   if (!tokenDetailsString) {
@@ -92,7 +99,11 @@ export function checkAutoLogin(dispatch, history) {
     dispatch(logout(history));
     return;
   }
+
   dispatch(loginConfirmedAction(tokenDetails));
+  getUserInfo(tokenDetails?.access_token).then((res) => {
+    dispatch(userConfirmedAction(res.data));
+  });
 
   const timer = expireDate.getTime() - todaysDate.getTime();
   runLogoutTimer(dispatch, timer, history);

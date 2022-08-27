@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Header from './../Layout/Header';
-import Footer from './../Layout/Footer';
+import Header from '../Layout/Header';
+import Footer from '../Layout/Footer';
 import CountUp from 'react-countup';
-import IndexBanner from './../Element/IndexBanner';
-import Jobcategories from './../Element/Jobcategories';
-import Featureblog from './../Element/Featureblog';
-import Jobsection from './../Element/Jobsection';
-import Owltestimonial from './../Element/Owlblog1';
+import IndexBanner from '../Element/IndexBanner';
+import Jobcategories from '../Element/Jobcategories';
+import Featureblog from '../Element/Featureblog';
+import Jobsection from '../Element/Jobsection';
+import Owltestimonial from '../Element/Owlblog1';
 import { useSelector } from 'react-redux';
 
 //Images
@@ -15,10 +15,9 @@ var bnr2 = require('./../../images/background/bg4.jpg');
 var bnr3 = require('./../../images/lines.png');
 
 function Homepage() {
-  const state = useSelector((state) => state.auth.userInfo.roles[0].name);
   return (
     <div className="page-wraper">
-      <Header userRole={state} />
+      <Header />
       <div className="page-content">
         <IndexBanner />
         <div className="section-full job-categories content-inner-2 bg-white">
@@ -50,7 +49,7 @@ function Homepage() {
             <Jobcategories />
           </div>
         </div>
-        <Featureblog />
+        {/* <Featureblog /> */}
         <Jobsection />
         <div
           className="section-full p-tb70 overlay-black-dark text-white text-center bg-img-fix"

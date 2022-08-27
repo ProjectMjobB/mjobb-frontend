@@ -17,9 +17,26 @@ const initialState = {
   errorMessage: '',
   successMessage: '',
   showLoading: false,
-  userInfo: localStorage.getItem('userInfo')
-    ? JSON.parse(localStorage.getItem('userInfo'))
-    : {},
+  userInfo: {
+    about: '',
+    city: '',
+    commentHistory: [],
+    comments: [],
+    complaintHistory: [],
+    complaints: [],
+    contactInformation: '',
+    contactInformation: '',
+    country: '',
+    email: '',
+    enabled: true,
+    firstName: '',
+    generalPoint: '',
+    id: '',
+    lastName: '',
+    phoneNumber: '',
+    profileImage: '',
+    roles: [],
+  },
 };
 
 export function AuthReducer(state = initialState, action) {
@@ -32,6 +49,13 @@ export function AuthReducer(state = initialState, action) {
       showLoading: false,
     };
   }
+  if (action.type === USER_CONFIRMED_ACTION) {
+    return {
+      ...state,
+      userInfo: action.payload,
+    };
+  }
+
   if (action.type === LOGIN_CONFIRMED_ACTION) {
     return {
       ...state,
@@ -67,12 +91,6 @@ export function AuthReducer(state = initialState, action) {
     };
   }
 
-  if (action.type === USER_CONFIRMED_ACTION) {
-    return {
-      ...state,
-      userInfo: action.payload,
-    };
-  }
   if (action.type === LOADING_TOGGLE_ACTION) {
     return {
       ...state,

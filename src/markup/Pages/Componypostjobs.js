@@ -1,10 +1,92 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from './../Layout/Header';
 import Footer from './../Layout/Footer';
 import { Form } from 'react-bootstrap';
-
+import { InputTags } from 'react-bootstrap-tagsinput';
+import axios from 'axios';
 function Componypostjobs() {
+  const [file, setFile] = useState('');
+  const [types, setTypes] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedType, setSelectedType] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [state, setState] = useState([]);
+  const [language, setLanguage] = useState([]);
+  const [inputs, setInputs] = useState({
+    title: '',
+    address: '',
+    yearsOfExperience: '',
+    minimumSalary: '',
+    maximumSalary: '',
+    country: '',
+    city: '',
+    workingType: '',
+  });
+
+  const fetchTypes = () => {
+    axios.get('/api/v1.0/job-types/').then((res) => {
+      setTypes(res.data);
+    });
+  };
+  const fetchCategories = () => {
+    axios.get('/api/v1.0/categories/all').then((res) => {
+      setCategories(res.data);
+    });
+  };
+
+  useEffect(() => {
+    fetchTypes();
+    fetchCategories();
+  }, []);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setInputs({
+      ...inputs,
+      [e.target.name]: value,
+    });
+  };
+
+  const getBase64 = (file) => {
+    return new Promise((resolve) => {
+      let baseURL = '';
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        baseURL = reader.result;
+        resolve(baseURL);
+      };
+    });
+  };
+  const handleFileInputChange = (e) => {
+    let file = e.target.files[0];
+
+    getBase64(file)
+      .then((result) => {
+        file['base64'] = result;
+        setFile(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const formData = inputs;
+    formData['file'] = file;
+    axios
+      .post(
+        `/api/v1.0/jobs/${selectedCategory}/${selectedType}/jobAdvertisements`,
+        formData
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <Header />
@@ -112,7 +194,7 @@ function Componypostjobs() {
                         Back
                       </Link>
                     </div>
-                    <form>
+                    <form onSubmit={onSubmit}>
                       <div className="row">
                         <div className="col-lg-6 col-md-6">
                           <div className="form-group">
@@ -121,25 +203,23 @@ function Componypostjobs() {
                               type="text"
                               className="form-control"
                               placeholder="Enter Job Title"
+                              name="title"
+                              value={inputs.title}
+                              onChange={handleChange}
                             />
                           </div>
                         </div>
+
                         <div className="col-lg-6 col-md-6">
                           <div className="form-group">
-                            <label>Your email</label>
-                            <input
-                              type="email"
-                              className="form-control"
-                              placeholder="info@gmail.com"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-lg-12 col-md-12">
-                          <div className="form-group">
-                            <label>Job Tags</label>
+                            <label>Address</label>
                             <input
                               type="text"
-                              className="form-control tags_input"
+                              className="form-control"
+                              placeholder="adress"
+                              name="address"
+                              value={inputs.address}
+                              onChange={handleChange}
                             />
                           </div>
                         </div>
@@ -150,11 +230,34 @@ function Componypostjobs() {
                               as="select"
                               custom
                               className="custom-select"
+                              value={selectedType}
+                              onChange={(e) => setSelectedType(e.target.value)}
                             >
-                              <option>Full Time</option>
-                              <option>Part Time</option>
-                              <option>Internship</option>
-                              <option>Freelance</option>
+                              {types.map((type) => (
+                                <option key={type.id} value={type.id}>
+                                  {type.name}
+                                </option>
+                              ))}
+                            </Form.Control>
+                          </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6">
+                          <div className="form-group">
+                            <label>Categories</label>
+                            <Form.Control
+                              as="select"
+                              custom
+                              className="custom-select"
+                              value={selectedCategory}
+                              onChange={(e) =>
+                                setSelectedCategory(e.target.value)
+                              }
+                            >
+                              {categories.map((item) => (
+                                <option key={item.id} value={item.id}>
+                                  {item.name}
+                                </option>
+                              ))}
                             </Form.Control>
                           </div>
                         </div>
@@ -165,12 +268,29 @@ function Componypostjobs() {
                               as="select"
                               custom
                               className="custom-select"
+                              name="yearsOfExperience"
+                              onChange={handleChange}
                             >
-                              <option>1 Years</option>
-                              <option>2 Years</option>
-                              <option>3 Years</option>
-                              <option>4 Years</option>
-                              <option>5 Years</option>
+                              <option value="1">1 Years</option>
+                              <option value="2">2 Years</option>
+                              <option value="3">3 Years</option>
+                              <option value="4">4 Years</option>
+                              <option value="5">5 Years</option>
+                            </Form.Control>
+                          </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6">
+                          <div className="form-group">
+                            <label>Working Type </label>
+                            <Form.Control
+                              as="select"
+                              custom
+                              className="custom-select"
+                              name="workingType"
+                              onChange={handleChange}
+                            >
+                              <option value="fullTime">Full Time</option>
+                              <option value="partTime">Part Time</option>
                             </Form.Control>
                           </div>
                         </div>
@@ -178,9 +298,12 @@ function Componypostjobs() {
                           <div className="form-group">
                             <label>Minimum Salary ($):</label>
                             <input
-                              type="email"
+                              type="text"
                               className="form-control"
                               placeholder="e.g. 10000"
+                              name="minimumSalary"
+                              value={inputs.minimumSalary}
+                              onChange={handleChange}
                             />
                           </div>
                         </div>
@@ -191,21 +314,23 @@ function Componypostjobs() {
                               type="text"
                               className="form-control"
                               placeholder="e.g. 20000"
+                              name="maximumSalary"
+                              value={inputs.maximumSalary}
+                              onChange={handleChange}
                             />
                           </div>
                         </div>
                         <div className="col-lg-6 col-md-6">
                           <div className="form-group">
                             <label>Region</label>
-                            <Form.Control
-                              as="select"
-                              custom
-                              className="custom-select"
-                            >
-                              <option>New York</option>
-                              <option>London</option>
-                              <option>Los Angeles</option>
-                            </Form.Control>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder="e.g. 20000"
+                              name="country"
+                              value={inputs.country}
+                              onChange={handleChange}
+                            />
                           </div>
                         </div>
                         <div className="col-lg-6 col-md-6">
@@ -215,6 +340,31 @@ function Componypostjobs() {
                               type="text"
                               className="form-control"
                               placeholder="London"
+                              name="city"
+                              value={inputs.city}
+                              onChange={handleChange}
+                            />
+                          </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6">
+                          <div className="form-group">
+                            <label htmlFor="">Add Tags</label>
+                            <InputTags
+                              style={{}}
+                              values={state}
+                              onTags={(value) => setState(value.values)}
+                              placeholder="Please space keyword"
+                            />
+                          </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6">
+                          <div className="form-group">
+                            <label htmlFor="">Add Language</label>
+                            <InputTags
+                              style={{}}
+                              values={language}
+                              onTags={(value) => setLanguage(value.values)}
+                              placeholder="Please space keyword"
                             />
                           </div>
                         </div>
@@ -230,12 +380,13 @@ function Componypostjobs() {
                                 type="file"
                                 className="site-button form-control"
                                 id="customFile"
+                                onChange={handleFileInputChange}
                               />
                             </div>
                           </div>
                         </div>
                       </div>
-                      <button type="button" className="site-button m-b30">
+                      <button type="submit" className="site-button m-b30">
                         Upload
                       </button>
                     </form>

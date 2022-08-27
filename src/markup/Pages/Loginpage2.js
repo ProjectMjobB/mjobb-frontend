@@ -17,7 +17,6 @@ function Login(props) {
   const [password, setPassword] = useState('');
   let errorsObj = { email: '', password: '' };
   const [errors, setErrors] = useState(errorsObj);
-
   const dispatch = useDispatch();
 
   function onLogin(e) {
@@ -183,6 +182,7 @@ function Login(props) {
 
 const mapStateToProps = (state) => {
   return {
+    auth: state.auth,
     errorMessage: state.auth.errorMessage,
     successMessage: state.auth.successMessage,
     showLoading: state.auth.showLoading,

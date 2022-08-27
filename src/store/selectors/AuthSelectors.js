@@ -4,5 +4,5 @@ export const isAuthenticated = (state) => {
 };
 
 export const getUserInfos = (state) => {
-  return state.auth.userInfo;
+  console.log(state);
 };

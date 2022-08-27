@@ -1,8 +1,12 @@
 import todoReducers from './Reducers';
-import {combineReducers} from 'redux';
+import AuthReducer from './AuthReducer';
+import CategoryReducer from './Reducers';
+import { combineReducers } from 'redux';
 
 const rootReducers = combineReducers({
-	todoReducers
-})
+  todoReducers,
+  AuthReducer,
+  CategoryReducer,
+});
 
 export default rootReducers;

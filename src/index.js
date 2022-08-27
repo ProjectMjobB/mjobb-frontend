@@ -8,17 +8,15 @@ import { store } from './store/store';
 import reportWebVitals from './reportWebVitals';
 import SimpleReactLightbox from 'simple-react-lightbox';
 import axios from 'axios';
-
+const token = JSON.parse(localStorage.getItem('userDetails'));
+const AUTH_TOKEN = `Bearer ${token?.access_token}`;
 axios.defaults.baseURL = 'https://spring-service-backend.herokuapp.com';
+axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 axios.interceptors.response.use((res) => {
   return res;
 });
 axios.interceptors.request.use(function (config) {
-  //   const token = {
-  //     username: 'mjobb-client',
-  //     password: 'mjobb-secret',
-  //   };
-  // config.headers.Authorization = 'Basic bWpvYmItY2xpZW50Om1qb2JiLXNlY3JldA==';
+  // config.headers.Authorization = `Bearer ${token.access_token}`;
   config.params = config.params || {};
 
   return config;

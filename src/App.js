@@ -2,7 +2,7 @@ import React, { Suspense, useEffect } from 'react';
 import Index from './markup/Markup';
 import { connect, useDispatch } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
-import { checkAutoLogin } from './services/AuthService';
+import { checkAutoLogin, checkActiveUser } from './services/AuthService';
 import { isAuthenticated, getUserInfos } from './store/selectors/AuthSelectors';
 import './css/plugins.css';
 import './css/style.css';
@@ -27,7 +27,7 @@ import Markup from './markup/Markup';
 function App(props) {
   const dispatch = useDispatch();
   useEffect(() => {
-    checkAutoLogin(dispatch, props.history);
+    checkAutoLogin(dispatch, props);
   }, [dispatch, props.history]);
 
   let routes = (
