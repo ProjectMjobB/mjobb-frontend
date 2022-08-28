@@ -4,7 +4,6 @@ import Header from './../Layout/Header';
 import Footer from './../Layout/Footer';
 import { Form } from 'react-bootstrap';
 import GoogleMaps from 'simple-react-google-maps';
-import ReactStars from 'react-rating-stars-component';
 import CompanyProfileForm from '../Element/CompanyProfileForm';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -13,14 +12,15 @@ import Image from './../../images/logo/icon3.jpg';
 import axios from 'axios';
 import { userConfirmedAction } from '../../store/actions/AuthActions';
 import CompanyLinks from '../Element/CompanyLinks';
-const userInfo = (state) => state.auth.userInfo;
+
 const token = (state) => state.auth.auth.access_token;
 
 const Companyprofile = (props) => {
   const user = useSelector((state) => state.auth.userInfo);
   const dispatch = useDispatch();
+  const [file, setFile] = useState();
+  const [rating, setRating] = useState();
   const access_token = useSelector(token);
-  const [profileImage, setProfileImage] = useState(user.profileImage);
   const [inputs, setInputs] = useState({
     email: user.email,
     firstName: user.firstName,
@@ -31,14 +31,12 @@ const Companyprofile = (props) => {
     about: user.about,
     website: user.website,
   });
-  const [generalPoint, setGeneralPoint] = useState(user.generalPoint);
 
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = inputs;
-    formData['profileImage'] = profileImage;
-    formData['generalPoint'] = generalPoint;
-
+    formData['profileImage'] = file;
+    // formData['generalPoint'] = rating;
     axios
       .post('/api/v1.0/users/update', formData, {
         headers: {
@@ -49,7 +47,6 @@ const Companyprofile = (props) => {
         dispatch(userConfirmedAction(res.data));
       });
   };
-  console.log(typeof generalPoint);
   React.useEffect(() => {
     setInputs({
       email: user.email,
@@ -61,39 +58,15 @@ const Companyprofile = (props) => {
       about: user.about,
       website: user.website,
     });
-    setProfileImage(user.profileImage);
-    setGeneralPoint(user.generalPoint);
+    // setProfileImage(user.profileImage);
+    // setGeneralPoint(user.generalPoint);
   }, [user]);
 
-  const ratingChanged = (newRating) => {
-    setGeneralPoint(newRating);
+  const someFileMethods = (value) => {
+    setFile(value);
   };
-
-  const getBase64 = (file) => {
-    return new Promise((resolve) => {
-      let baseURL = '';
-      let reader = new FileReader();
-
-      reader.readAsDataURL(file);
-
-      // on reader load somthing...
-      reader.onload = () => {
-        baseURL = reader.result;
-        resolve(baseURL);
-      };
-    });
-  };
-  const handleFileInputChange = (e) => {
-    let file = e.target.files[0];
-
-    getBase64(file)
-      .then((result) => {
-        file['base64'] = result;
-        setProfileImage(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const someRatingMethods = (value) => {
+    setRating(value);
   };
 
   const handleChange = (e) => {
@@ -111,46 +84,10 @@ const Companyprofile = (props) => {
           <div className="section-full bg-white p-t50 p-b20">
             <div className="container">
               <div className="row">
-                <div className="col-xl-3 col-lg-4 m-b30">
-                  <div className="sticky-top">
-                    <div className="candidate-info company-info">
-                      <div className="candidate-detail text-center">
-                        <div className="canditate-des">
-                          <div className="profileImage">
-                            <img src={profileImage} alt="" />
-                          </div>
-                          <div
-                            className="upload-link"
-                            title="update"
-                            data-toggle="tooltip"
-                            data-placement="right"
-                          >
-                            <input
-                              type="file"
-                              className="update-flie"
-                              onChange={handleFileInputChange}
-                            />
-                            <i className="fa fa-pencil"></i>
-                          </div>
-                        </div>
-                        <div className="candidate-title d-flex justify-content-center flex-column align-items-center">
-                          <h4 className="m-b5">
-                            <Link to={'#'}>@COMPANY</Link>
-                          </h4>
-                          <ReactStars
-                            value={generalPoint}
-                            count={5}
-                            onChange={ratingChanged}
-                            size={26}
-                            activeColor="#ffd700"
-                          />
-                          <span>{generalPoint}</span>
-                        </div>
-                      </div>
-                      <CompanyLinks></CompanyLinks>
-                    </div>
-                  </div>
-                </div>
+                <CompanyLinks
+                  someFileMethods={someFileMethods}
+                  someRatingMethods={someRatingMethods}
+                />
                 <div className="col-xl-9 col-lg-8 m-b30">
                   <div className="job-bx submit-resume">
                     <div className="job-bx-title clearfix">

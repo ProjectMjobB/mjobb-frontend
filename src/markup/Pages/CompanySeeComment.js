@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
-import Header2 from './../Layout/Header2';
+import Header from './../Layout/Header';
 import Footer from './../Layout/Footer';
-
+import CompanyLinks from '../Element/CompanyLinks';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 const jobAlert = [
   { id: 1, title: 'Social Media Expert', date: 'December 15,2018' },
   { id: 2, title: 'Web Designer', date: 'November 10,2018' },
@@ -16,10 +18,12 @@ const jobAlert = [
   { id: 9, title: 'Finance Accountant', date: 'October 5,2018' },
   { id: 10, title: 'Social Media Expert', date: 'December 15,2018' },
 ];
-
-function Jobsalert() {
+const CompanySeeComment = () => {
+  const userId = useSelector((state) => state.auth.userInfo.id);
   const [company, setCompany] = useState(false);
   const [contacts, setContacts] = useState(jobAlert);
+  const [comments, setComments] = useState([]);
+
   // delete data
   const handleDeleteClick = (contactId) => {
     const newContacts = [...contacts];
@@ -27,116 +31,35 @@ function Jobsalert() {
     newContacts.splice(index, 1);
     setContacts(newContacts);
   };
+
+  const fetchComments = (id) => {
+    if (id) {
+      axios
+        .get(`/api/v1.0/comments/users/${id}/to-user/accepted-comments`)
+        .then((res) => {
+          console.log(res.data);
+        });
+    }
+  };
+
+  useEffect(() => {
+    fetchComments(userId);
+  }, [userId]);
+
   return (
     <>
-      <Header2 />
+      <Header />
       <div className="page-content bg-white">
         <div className="content-block">
           <div className="section-full bg-white p-t50 p-b20">
             <div className="container">
               <div className="row">
-                <div className="col-xl-3 col-lg-4 m-b30">
-                  <div className="sticky-top">
-                    <div className="candidate-info">
-                      <div className="candidate-detail text-center">
-                        <div className="canditate-des">
-                          <Link to={'#'}>
-                            <img
-                              alt=""
-                              src={require('./../../images/team/pic1.jpg')}
-                            />
-                          </Link>
-                          <div
-                            className="upload-link"
-                            title="update"
-                            data-toggle="tooltip"
-                            data-placement="right"
-                          >
-                            <input type="file" className="update-flie" />
-                            <i className="fa fa-camera"></i>
-                          </div>
-                        </div>
-                        <div className="candidate-title">
-                          <div className="">
-                            <h4 className="m-b5">
-                              <Link to={'#'}>David Matin</Link>
-                            </h4>
-                            <p className="m-b0">
-                              <Link to={'#'}>Web developer</Link>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <ul>
-                        <li>
-                          <Link to={'/jobs-profile'}>
-                            <i className="fa fa-user-o" aria-hidden="true"></i>
-                            <span>Profile</span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to={'/jobs-my-resume'}>
-                            <i
-                              className="fa fa-file-text-o"
-                              aria-hidden="true"
-                            ></i>
-                            <span>My Resume</span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to={'/jobs-saved-jobs'}>
-                            <i className="fa fa-heart-o" aria-hidden="true"></i>
-                            <span>Saved Jobs</span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to={'/jobs-applied-job'}>
-                            <i
-                              className="fa fa-briefcase"
-                              aria-hidden="true"
-                            ></i>
-                            <span>Applied Jobs</span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to={'/jobs-alerts'} className="active">
-                            <i className="fa fa-bell-o" aria-hidden="true"></i>
-                            <span>Job Alerts</span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to={'/jobs-cv-manager'}>
-                            <i
-                              className="fa fa-id-card-o"
-                              aria-hidden="true"
-                            ></i>
-                            <span>CV Manager</span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to={'/jobs-change-password'}>
-                            <i className="fa fa-key" aria-hidden="true"></i>
-                            <span>Change Password</span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to={'#'}>
-                            <i
-                              className="fa fa-sign-out"
-                              aria-hidden="true"
-                            ></i>
-                            <span>Log Out</span>
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                <CompanyLinks />
                 <div className="col-xl-9 col-lg-8 m-b30">
                   <div className="job-bx table-job-bx browse-job clearfix">
                     <div className="job-bx-title clearfix">
                       <h5 className="font-weight-700 pull-left text-uppercase">
-                        Job Alerts
+                        Comments
                       </h5>
                       <div className="float-right">
                         <span className="select-title">Sort by freshness</span>
@@ -151,32 +74,20 @@ function Jobsalert() {
                     <table>
                       <thead>
                         <tr>
-                          <th>Premium jobs</th>
-                          <th>Criterias</th>
-                          <th>Date</th>
-                          <th></th>
+                          <th>Users</th>
+                          <th>Comments</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {contacts.map((contact, index) => (
+                        {comments.map((comment, index) => (
                           <tr key={index}>
                             <td className="job-name">
-                              <Link to={'/job-detail'}>{contact.title}</Link>
+                              <Link to={`/user/${comment.id}`}>
+                                {comment.title}
+                              </Link>
                             </td>
                             <td className="criterias">
                               Lorem Ipsum is simply dummy text.
-                            </td>
-                            <td className="date">{contact.date}</td>
-                            <td className="job-links">
-                              <Link to={'#'} onClick={() => setCompany(true)}>
-                                <i className="fa fa-eye"></i>
-                              </Link>
-                              <Link
-                                to={'#'}
-                                onClick={() => handleDeleteClick(contact.id)}
-                              >
-                                <i className="ti-trash"></i>
-                              </Link>
                             </td>
                           </tr>
                         ))}
@@ -270,5 +181,6 @@ function Jobsalert() {
       <Footer />
     </>
   );
-}
-export default Jobsalert;
+};
+
+export default CompanySeeComment;

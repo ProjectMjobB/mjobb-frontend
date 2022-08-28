@@ -1304,9 +1304,10 @@
 }
 
 .job-links {
-    position: absolute;
-    top: 25px;
-    right: 25px;
+    outline: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
 }
 
 .job-links i {

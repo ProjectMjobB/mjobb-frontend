@@ -13,7 +13,6 @@ const Header = (props) => {
   const [show, setShow] = useState(false);
   const [userInfo, setUserInfo] = useState();
   const user = useSelector((state) => state.auth.userInfo);
-
   const handleClose = () => {
     setShow(false);
   };
@@ -129,16 +128,16 @@ const Header = (props) => {
                       About Us
                     </Link>
                   </li>
-                  {userInfo === 'ROLE_EMPLOYEE' ? (
+                  {props.userRoles === 'ROLE_COMPANY' ? (
                     <li>
-                      <Link to={'/jobs-profile'} className="dez-page">
-                        My Profile
+                      <Link to={'/company-profile'} className="dez-page">
+                        Company Profile
                       </Link>
                     </li>
                   ) : (
                     <li>
-                      <Link to={'/company-profile'} className="dez-page">
-                        Company Profile
+                      <Link to={'/jobs-profile'} className="dez-page">
+                        My Profile
                       </Link>
                     </li>
                   )}
@@ -526,7 +525,7 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    userInfo: getUserInfos(state),
+    userRoles: getUserInfos(state),
   };
 };
 

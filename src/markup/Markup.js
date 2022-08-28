@@ -13,7 +13,7 @@ import Jobcvmanager from './Pages/Jobcvmanager';
 import Changepasswordpage from './Pages/Changepasswordpage';
 
 import Companyprofile from './Pages/Companyprofile';
-import Companyresume from './Pages/Companyresume';
+import CompanyJobs from './Pages/CompanyJobs';
 import Componypostjobs from './Pages/Componypostjobs';
 import Companymanage from './Pages/Companymanage';
 import Companytransactions from './Pages/Companytransactions';
@@ -56,6 +56,7 @@ import Blogdetail from './Pages/Blogdetail';
 import ScrollToTop from './Element/ScrollToTop';
 import Loginpage2 from './Pages/Loginpage2';
 import AuthenticatedRoute from '../services/AuthenticatedRoute';
+import CompanySeeComment from './Pages/CompanySeeComment';
 const Markup = () => {
   return (
     <>
@@ -73,6 +74,10 @@ const Markup = () => {
           />
           <AuthenticatedRoute path="/jobs-alerts" component={Jobsalert} />
           <AuthenticatedRoute
+            path="/company-see-comments"
+            component={CompanySeeComment}
+          />
+          <AuthenticatedRoute
             path="/jobs-saved-jobs"
             component={Jobsavedjobs}
           />
@@ -89,10 +94,7 @@ const Markup = () => {
             path="/company-profile"
             component={Companyprofile}
           />
-          <AuthenticatedRoute
-            path="/company-resume"
-            component={Companyresume}
-          />
+          <AuthenticatedRoute path="/company-jobs" component={CompanyJobs} />
           <AuthenticatedRoute
             path="/company-post-jobs"
             component={Componypostjobs}
@@ -111,7 +113,7 @@ const Markup = () => {
           />
 
           <AuthenticatedRoute path="/about-us" component={Aboutus} />
-          <AuthenticatedRoute path="/job-detail" component={Jobdetail} />
+          <AuthenticatedRoute path="/job-detail/:id" component={Jobdetail} />
           <AuthenticatedRoute path="/companies" component={Companies} />
           <AuthenticatedRoute
             path="/free-job-alerts"
