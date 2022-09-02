@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Homepage from './Pages/Homepage1';
 import Homepage2 from './Pages/Homepage';
 
-import Jobprofile from './Pages/Jobprofile';
+import EmployeeProfile from './Pages/EmployeeProfile';
 import Jobmyresume from './Pages/Jobmyresume';
 import Jobsappliedjob from './Pages/Jobsappliedjob';
 import Jobsalert from './Pages/Jobsalert';
@@ -65,8 +65,10 @@ const Markup = () => {
           <AuthenticatedRoute path="/" exact component={Homepage2} />
           <AuthenticatedRoute path="/index-2" component={Homepage} />
           <AuthenticatedRoute path="/home" component={Homepage2} />
-
-          <AuthenticatedRoute path="/jobs-profile" component={Jobprofile} />
+          <AuthenticatedRoute
+            path="/employee-profile"
+            component={EmployeeProfile}
+          />
           <AuthenticatedRoute path="/jobs-my-resume" component={Jobmyresume} />
           <AuthenticatedRoute
             path="/jobs-applied-job"
@@ -89,7 +91,6 @@ const Markup = () => {
             path="/jobs-change-password"
             component={Changepasswordpage}
           />
-
           <AuthenticatedRoute
             path="/company-profile"
             component={Companyprofile}
@@ -111,7 +112,6 @@ const Markup = () => {
             path="/browse-candidates"
             component={Browsecandidates}
           />
-
           <AuthenticatedRoute path="/about-us" component={Aboutus} />
           <AuthenticatedRoute path="/job-detail/:id" component={Jobdetail} />
           <AuthenticatedRoute path="/companies" component={Companies} />
@@ -130,12 +130,15 @@ const Markup = () => {
           <AuthenticatedRoute
             path="/browse-job-filter-list"
             component={Browsejobfilterlist}
-          />
+          />{' '}
           <AuthenticatedRoute
-            path="/browse-job-filter-grid"
+            path="/browse-job-filter-grid/:id"
             component={Browsejobfiltergrid}
           />
-
+          <AuthenticatedRoute
+            path="/browse-job-filter-grid/"
+            component={Browsejobfiltergrid}
+          />
           <AuthenticatedRoute
             path="/category-all-jobs"
             component={Categoryalljob}
@@ -157,20 +160,15 @@ const Markup = () => {
             path="/category-skill-jobs"
             component={Categoryskilljobs}
           />
-
           <AuthenticatedRoute
             path="/portfolio-grid-2"
             component={Portfoliogrid2}
           />
-
           <Route path="/login" component={Loginpage2} />
-
           <Route path="/register1" component={Register1} />
           <AuthenticatedRoute path="/register-2" component={Register2} />
           <AuthenticatedRoute path="/error-404" component={Error404} />
-
           <AuthenticatedRoute path="/contact" component={Contact} />
-
           <AuthenticatedRoute path="/blog-classic" component={Blogclassic} />
           <AuthenticatedRoute
             path="/blog-classic-sidebar"

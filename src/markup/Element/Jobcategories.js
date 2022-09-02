@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import {
   fetchPopularCategoryAction,
   fetchPopularAllCategoryAction,
 } from '../../store/actions/CategoryActions';
 import { fetchPopularAllCategories } from '../../services/CategoryServise';
+import { isAuthenticated } from '../../store/selectors/AuthSelectors';
 
 const selectCategories = (state) => state.CategoryReducer.categories;
 
 function Jobcategories(props) {
+  console.log(props);
   const [display, setDisplay] = useState(true);
   const categories = useSelector(selectCategories);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchPopularCategoryAction());
-  }, []);
+  }, [props.isAuthenticated]);
 
   const handleFetch = () => {
     setLoading(true);
@@ -36,7 +38,10 @@ function Jobcategories(props) {
               <div className="icon-md text-primary m-b20">
                 {/* <i className="ti-location-pin"></i> */}
               </div>
-              <Link to={'/company-manage-job'} className="dez-tilte">
+              <Link
+                to={`/browse-job-filter-grid/${item.id}`}
+                className="dez-tilte"
+              >
                 {item.name}
               </Link>
               {/* <div className="rotate-icon">
@@ -60,4 +65,10 @@ function Jobcategories(props) {
   );
 }
 
-export default Jobcategories;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: isAuthenticated(state),
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(Jobcategories));

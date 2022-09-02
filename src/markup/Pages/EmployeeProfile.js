@@ -1,64 +1,40 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Header from './../Layout/Header';
-import Footer from './../Layout/Footer';
+import Header from '../Layout/Header';
+import Footer from '../Layout/Footer';
+import Profilesidebar from '../Element/Profilesidebar';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 import { userConfirmedAction } from '../../store/actions/AuthActions';
-import CompanyLinks from '../Element/CompanyLinks';
-
-const token = (state) => state.auth.auth.access_token;
-
-const Companyprofile = (props) => {
+import axios from 'axios';
+import { Form } from 'react-bootstrap';
+function EmployeeProfile() {
   const user = useSelector((state) => state.auth.userInfo);
   const dispatch = useDispatch();
   const [file, setFile] = useState();
-  const [rating, setRating] = useState();
-  const access_token = useSelector(token);
   const [inputs, setInputs] = useState({
-    email: user.email,
     firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
     phoneNumber: user.phoneNumber,
     foundationDate: user.foundationDate,
     country: user.country,
     city: user.city,
     about: user.about,
-    website: user.website,
+    areaOfInterest: user.areaOfInterest,
+    requestedWorkingType: user.requestedWorkingType,
+    yearsOfExperience: user.yearsOfExperience,
+    currentSalary: user.currentSalary,
+    requestedSalary: user.requestedSalary,
   });
 
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = inputs;
     formData['profileImage'] = file;
-    // formData['generalPoint'] = rating;
-    axios
-      .post('/api/v1.0/users/update', formData, {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      })
-      .then((res) => {
-        dispatch(userConfirmedAction(res.data));
-      });
-  };
-  React.useEffect(() => {
-    setInputs({
-      email: user.email,
-      firstName: user.firstName,
-      phoneNumber: user.phoneNumber,
-      foundationDate: user.foundationDate,
-      country: user.country,
-      city: user.city,
-      about: user.about,
-      website: user.website,
+    console.log(formData);
+    axios.post('/api/v1.0/users/update', formData).then((res) => {
+      dispatch(userConfirmedAction(res.data));
     });
-  }, [user]);
-
-  const someFileMethods = (value) => {
-    setFile(value);
-  };
-  const someRatingMethods = (value) => {
-    setRating(value);
   };
 
   const handleChange = (e) => {
@@ -68,26 +44,43 @@ const Companyprofile = (props) => {
     });
   };
 
+  const someFileMethods = (value) => {
+    setFile(value);
+  };
+  React.useEffect(() => {
+    setInputs({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+      foundationDate: user.foundationDate,
+      country: user.country,
+      city: user.city,
+      about: user.about,
+      areaOfInterest: user.areaOfInterest,
+      requestedWorkingType: user.requestedWorkingType,
+      yearsOfExperience: user.yearsOfExperience,
+      currentSalary: user.currentSalary,
+      requestedSalary: user.requestedSalary,
+    });
+  }, [user]);
   return (
     <>
       <Header />
       <div className="page-content bg-white">
         <div className="content-block">
-          <div className="section-full bg-white p-t50 p-b20">
+          <div className="section-full bg-white browse-job p-t50 p-b20">
             <div className="container">
               <div className="row">
-                <CompanyLinks
-                  someFileMethods={someFileMethods}
-                  someRatingMethods={someRatingMethods}
-                />
+                <Profilesidebar someFileMethods={someFileMethods} />
                 <div className="col-xl-9 col-lg-8 m-b30">
-                  <div className="job-bx submit-resume">
+                  <div className="job-bx job-profile">
                     <div className="job-bx-title clearfix">
                       <h5 className="font-weight-700 pull-left text-uppercase">
-                        Company Profile
+                        Basic Information
                       </h5>
                       <Link
-                        to={'/company-profile'}
+                        to={'./'}
                         className="site-button right-arrow button-sm float-right"
                       >
                         Back
@@ -97,13 +90,27 @@ const Companyprofile = (props) => {
                       <div className="row m-b30">
                         <div className="col-lg-6 col-md-6">
                           <div className="form-group">
-                            <label>Company Name</label>
+                            <label>First Name</label>
                             <input
                               type="text"
                               className="form-control"
                               placeholder="Enter Company Name"
                               name="firstName"
                               value={inputs.firstName}
+                              onChange={handleChange}
+                              readOnly
+                            />
+                          </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6">
+                          <div className="form-group">
+                            <label>Last Name</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder="Enter Company Name"
+                              name="lastName"
+                              value={inputs.lastName}
                               onChange={handleChange}
                               readOnly
                             />
@@ -123,19 +130,7 @@ const Companyprofile = (props) => {
                             />
                           </div>
                         </div>
-                        <div className="col-lg-6 col-md-6">
-                          <div className="form-group">
-                            <label>Website</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Website Link"
-                              name="website"
-                              value={inputs.website}
-                              onChange={handleChange}
-                            />
-                          </div>
-                        </div>
+
                         <div className="col-lg-6 col-md-6">
                           <div className="form-group">
                             <label>Founded Date </label>
@@ -189,6 +184,82 @@ const Companyprofile = (props) => {
                             />
                           </div>
                         </div>
+                        <div className="col-lg-6 col-md-6">
+                          <div className="form-group">
+                            <label>Interested </label>
+                            <input
+                              type="text"
+                              name="areaOfInterest"
+                              className="form-control"
+                              placeholder="2018"
+                              value={inputs.areaOfInterest}
+                              onChange={handleChange}
+                            />
+                          </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6">
+                          <div className="form-group">
+                            <label>Working Type </label>
+                            <Form.Control
+                              value={inputs.requestedWorkingType}
+                              as="select"
+                              custom
+                              className="custom-select"
+                              name="requestedWorkingType"
+                              onChange={handleChange}
+                            >
+                              <option value="fullTime">Full Time</option>
+                              <option value="partTime">Part Time</option>
+                            </Form.Control>
+                          </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6">
+                          <div className="form-group">
+                            <label>Experience</label>
+                            <Form.Control
+                              value={inputs.yearsOfExperience}
+                              as="select"
+                              custom
+                              className="custom-select"
+                              name="yearsOfExperience"
+                              onChange={handleChange}
+                            >
+                              <option value="1">1 Years</option>
+                              <option value="2">2 Years</option>
+                              <option value="3">3 Years</option>
+                              <option value="4">4 Years</option>
+                              <option value="5">5 Years</option>
+                            </Form.Control>
+                          </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6">
+                          <div className="form-group">
+                            <label>Current Salary ($):</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder="e.g. 10000"
+                              name="currentSalary"
+                              value={inputs.currentSalary}
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6">
+                          <div className="form-group">
+                            <label>Current Salary ($):</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder="e.g. 10000"
+                              name="requestedSalary"
+                              value={inputs.requestedSalary}
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
+                        </div>
                         <div className="col-lg-12 col-md-12">
                           <div className="form-group">
                             <label>About:</label>
@@ -215,5 +286,5 @@ const Companyprofile = (props) => {
       <Footer />
     </>
   );
-};
-export default Companyprofile;
+}
+export default EmployeeProfile;

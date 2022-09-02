@@ -3,10 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import ReactStars from 'react-rating-stars-component';
 import { useDispatch, useSelector } from 'react-redux';
 
-const spotifyId = 'spotifyId';
-const id = { id: 1 };
 const CompanyLinks = (props) => {
-  console.log('props', { ...props });
   const user = useSelector((state) => state.auth.userInfo);
   const [profileImage, setProfileImage] = useState();
   const [generalPoint, setGeneralPoint] = useState(0);
