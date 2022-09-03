@@ -23,8 +23,10 @@ function Browsejobfiltergrid() {
   useEffect(() => {
     if (search) {
       searchJobs(search);
-    } else if (params.id) {
+    } else if (params.id && !params.id.includes('tagId')) {
       filterCategoryAllJobs(params.id);
+    } else if (params.id && params.id.includes('tagId')) {
+      filterByTagId(params.id);
     } else {
       fetchJobs();
     }
@@ -39,7 +41,7 @@ function Browsejobfiltergrid() {
   const searchJobs = async (search) => {
     setLoading(true);
     const res = await axios.get(
-      `/api/v1.0/jobs/searchUrl?search=title:${search}`
+      `/api/v1.0/jobs/searchUrl?search=title:*${search}`
     );
     setJobs(res.data);
     setLoading(false);
@@ -49,6 +51,15 @@ function Browsejobfiltergrid() {
     const res = await axios.get(
       `api/v1.0/jobs/jobAdvertisements/${categoryId}/jobs`
     );
+    setJobs(res.data);
+    setLoading(false);
+  };
+  const filterByTagId = async (tagId) => {
+    setLoading(true);
+    let id = tagId;
+    id = id.replace('tagId=', '');
+
+    const res = await axios.get(`/api/v1.0/tags/tags/${id}/jobAdvertisements`);
     setJobs(res.data);
     setLoading(false);
   };
@@ -115,29 +126,6 @@ function Browsejobfiltergrid() {
                         </li>
                       ))}
                   </ul>
-                  <div className="pagination-bx float-right m-t30">
-                    <ul className="pagination">
-                      <li className="previous">
-                        <Link to={''}>
-                          <i className="ti-arrow-left"></i> Prev
-                        </Link>
-                      </li>
-                      <li className="active">
-                        <Link to={''}>1</Link>
-                      </li>
-                      <li>
-                        <Link to={''}>2</Link>
-                      </li>
-                      <li>
-                        <Link to={''}>3</Link>
-                      </li>
-                      <li className="next">
-                        <Link to={''}>
-                          Next <i className="ti-arrow-right"></i>
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
                 </div>
               </div>
             </div>

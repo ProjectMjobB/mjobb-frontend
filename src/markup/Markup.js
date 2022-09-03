@@ -167,7 +167,7 @@ const Markup = () => {
           <Route path="/login" component={Loginpage2} />
           <Route path="/register1" component={Register1} />
           <AuthenticatedRoute path="/register-2" component={Register2} />
-          <AuthenticatedRoute path="/error-404" component={Error404} />
+          <AuthenticatedRoute path="*" component={Error404} />
           <AuthenticatedRoute path="/contact" component={Contact} />
           <AuthenticatedRoute path="/blog-classic" component={Blogclassic} />
           <AuthenticatedRoute

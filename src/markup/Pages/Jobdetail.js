@@ -36,6 +36,7 @@ function Jobdetail(props) {
   const [jobInfo, setJobInfo] = useState({});
   const [isFavorite, setIsFavorite] = useState();
   const [checked, setChecked] = React.useState(false);
+  const [otherJobs, setOtherJobs] = useState([]);
 
   const fetchJobsInfo = () => {
     if (jobId) {
@@ -57,9 +58,15 @@ function Jobdetail(props) {
       }
     }
   };
+  const otherJobList = () => {
+    axios.get(`/api/v1.0/jobs/${jobId}/apriori-algorithm`).then((res) => {
+      setOtherJobs(res.data);
+    });
+  };
   useEffect(() => {
     fetchJobsInfo();
     handleFavorite();
+    otherJobList();
   }, [jobId, favorites]);
 
   const handleChange = (e) => {
@@ -128,7 +135,8 @@ function Jobdetail(props) {
                       <div className="row">
                         <div className="col-lg-12 col-md-6">
                           <div className="m-b30">
-                            <Link>Company Name</Link>
+                            <h3>Company Profile Link</h3>
+                            <Link>{jobInfo?.company.firstName}</Link>
                           </div>
                         </div>
                         <div className="col-lg-12 col-md-6">
@@ -204,7 +212,10 @@ function Jobdetail(props) {
                                   {jobInfo?.tags?.map((tag) => (
                                     <Link
                                       key={tag?.id}
-                                      to={'#'}
+                                      to={
+                                        '/browse-job-filter-grid/tagId=' +
+                                        tag?.id
+                                      }
                                       className="mr-1"
                                     >
                                       <span>{tag?.name}</span>
@@ -242,52 +253,14 @@ function Jobdetail(props) {
                           {jobInfo?.title}
                         </Link>
                       </h3>
-                      {/* <ul className="job-info">
-                      <li>
-                        <strong>Education</strong> Web Designer
-                      </li>
-                      <li>
-                        <strong>Deadline:</strong> 25th January 2018
-                      </li>
-                      <li>
-                        <i className="ti-location-pin text-black m-r5"></i>{' '}
-                        NewYark{' '}
-                      </li>
-                    </ul> */}
                       <h5 className="font-weight-600">Job Description</h5>
                       <div className="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
                       <p>{jobInfo?.description}</p>
-                      <h5 className="font-weight-600">How to Apply</h5>
-                      <div className="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-                      <p>
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and
-                        scrambled it to make a type specimen book. It has
-                        survived not only five centuries, but also the leap into
-                        electronic typesetting, remaining essentially unchanged.
-                        It was popularised in the 1960s with the release of
-                        Letraset sheets containing Lorem Ipsum passages.
-                      </p>
-                      <h5 className="font-weight-600">Job Requirements</h5>
-                      <div className="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-                      <ul className="list-num-count no-round">
-                        <li>
-                          The DexignLab Privacy Policy was updated on 25 June
-                          2018.
-                        </li>
-                        <li>Who We Are and What This Policy Covers</li>
-                        <li>
-                          Remaining essentially unchanged It was popularised in
-                          the 1960s{' '}
-                        </li>
-                        <li>
-                          Lorem Ipsum has been the industry's standard dummy
-                          text ever since the 1500s,
-                        </li>
-                        <li>DexignLab standard dummy text ever since</li>
-                      </ul>
+                      <br />
+                      <div>
+                        <img src={jobInfo?.file} alt="" />
+                      </div>
+
                       {props.userRoles === 'ROLE_EMPLOYEE' ? (
                         <button onClick={applyToJob} className="site-button">
                           Apply This Job
@@ -314,48 +287,26 @@ function Jobdetail(props) {
             <div className="container">
               <h4>Those who applied to this also applied to these</h4>
               <div className="row">
-                {blogGrid.map((item, index) => (
+                {otherJobs.map((item, index) => (
                   <div className="col-xl-3 col-lg-6 col-md-6" key={index}>
                     <div className="m-b30 blog-grid">
-                      <div className="dez-post-media dez-img-effect ">
-                        {' '}
-                        <Link to={'/blog-details'}>
-                          <img src={item.image} alt="" />
-                        </Link>{' '}
-                      </div>
                       <div className="dez-info p-a20 border-1">
                         <div className="dez-post-title ">
                           <h5 className="post-title">
-                            <Link to={'/blog-details'}>Title of blog post</Link>
+                            <Link to={'/blog-details'}>{item?.title}</Link>
                           </h5>
                         </div>
                         <div className="dez-post-meta ">
                           <ul>
                             <li className="post-date">
                               {' '}
-                              <i className="ti-location-pin"></i> London{' '}
+                              <i className="ti-location-pin"></i> {item?.city}{' '}
                             </li>
                             <li className="post-author">
                               <i className="ti-user"></i>By{' '}
-                              <Link to={'#'}>Jone</Link>{' '}
+                              <Link to={'#'}>{item?.company?.firstName}</Link>{' '}
                             </li>
                           </ul>
-                        </div>
-                        <div className="dez-post-text">
-                          <p>
-                            All the Lorem Ipsum generators on the Internet tend
-                            to repeat predefined chunks.
-                          </p>
-                        </div>
-                        <div className="dez-post-readmore">
-                          <Link
-                            to={'/blog-details'}
-                            title="READ MORE"
-                            rel="bookmark"
-                            className="site-button-link"
-                          >
-                            <span className="fw6">READ MORE</span>
-                          </Link>
                         </div>
                       </div>
                     </div>

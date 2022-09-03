@@ -108,24 +108,6 @@ const CompanyLinks = (props) => {
                   <span>Post A Job</span>
                 </NavLink>
               </li>
-              {/* <li>
-                <NavLink
-                  to={'/company-transactions'}
-                  className={({ isActive }) => (isActive ? 'active' : '')}
-                >
-                  <i className="fa fa-random" aria-hidden="true"></i>
-                  <span>Transactions</span>
-                </NavLink>
-              </li> */}
-              <li>
-                <NavLink
-                  to={'/company-manage-job'}
-                  className={({ isActive }) => (isActive ? 'active' : '')}
-                >
-                  <i className="fa fa-briefcase" aria-hidden="true"></i>
-                  <span>Manage jobs</span>
-                </NavLink>
-              </li>
               <li>
                 <NavLink
                   to={'/company-jobs'}
