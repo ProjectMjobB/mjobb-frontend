@@ -212,7 +212,7 @@ const Companyprofile = (props) => {
           </div>
         </div>
       </div>
-      <Footer />
+       
     </>
   );
 };

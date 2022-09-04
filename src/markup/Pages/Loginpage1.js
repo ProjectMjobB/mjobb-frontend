@@ -97,7 +97,7 @@ function Loginpage1() {
           </div>
         </div>
       </div>
-      <Footer />
+       
     </>
   );
 }

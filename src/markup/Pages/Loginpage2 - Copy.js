@@ -16,14 +16,7 @@ function Loginpage2(){
 										<Link to={"/"}><img src={require("./../../images/logo-white2.png")} alt="" /></Link>
 									</div>
 									<h2 className="m-b10">Login To You Now</h2>
-									<p className="m-b30">Lorem Ipsum is simply dummy text of the printing and typesetting industry has been the industry.</p>
-									<ul className="list-inline m-a0">
-										<li><Link to={''} className="m-r10 text-white "><i className="fa fa-facebook"></i></Link></li>
-										<li><Link to={''} className="m-r10 text-white "><i className="fa fa-google-plus"></i></Link></li>
-										<li><Link to={''} className="m-r10 text-white "><i className="fa fa-linkedin"></i></Link></li>
-										<li><Link to={''} className="m-r10 text-white "><i className="fa fa-instagram"></i></Link></li>
-										<li><Link to={''} className="m-r10 text-white"><i className="fa fa-twitter"></i></Link></li>
-									</ul>
+					
 								</div>
 							</div>
 							<div className="col-lg-6 col-md-6">

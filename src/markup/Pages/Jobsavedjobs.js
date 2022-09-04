@@ -66,7 +66,7 @@ function Jobsavedjobs() {
           </div>
         </div>
       </div>
-      <Footer />
+       
     </>
   );
 }

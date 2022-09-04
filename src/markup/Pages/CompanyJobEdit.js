@@ -430,7 +430,7 @@ const CompanyJobEdit = () => {
           </div>
         </div>
       </div>
-      <Footer />
+       
     </>
   );
 };

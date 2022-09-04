@@ -182,29 +182,7 @@ function Jobsalert() {
                         ))}
                       </tbody>
                     </table>
-                    <div className="pagination-bx float-right">
-                      <ul className="pagination">
-                        <li className="previous">
-                          <Link to={'#'}>
-                            <i className="ti-arrow-left"></i> Prev
-                          </Link>
-                        </li>
-                        <li className="active">
-                          <Link to={'#'}>1</Link>
-                        </li>
-                        <li>
-                          <Link to={'#'}>2</Link>
-                        </li>
-                        <li>
-                          <Link to={'#'}>3</Link>
-                        </li>
-                        <li className="next">
-                          <Link to={'#'}>
-                            Next <i className="ti-arrow-right"></i>
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
+                   
                   </div>
                   <Modal
                     show={company}
@@ -267,7 +245,7 @@ function Jobsalert() {
           </div>
         </div>
       </div>
-      <Footer />
+       
     </>
   );
 }

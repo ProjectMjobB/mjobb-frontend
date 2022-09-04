@@ -96,7 +96,7 @@ function Changepasswordpage() {
           </div>
         </div>
       </div>
-      <Footer />
+       
     </>
   );
 }

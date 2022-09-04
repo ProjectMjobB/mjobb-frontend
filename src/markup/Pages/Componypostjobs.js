@@ -405,7 +405,7 @@ function Componypostjobs() {
           </div>
         </div>
       </div>
-      <Footer />
+       
     </>
   );
 }

@@ -67,7 +67,7 @@ function Jobsappliedjob() {
           </div>
         </div>
       </div>
-      <Footer />
+       
     </>
   );
 }

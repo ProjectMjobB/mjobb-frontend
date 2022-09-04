@@ -59,37 +59,6 @@ function Login(props) {
                     </Link>
                   </div>
                   <h2 className="m-b10">Login To You Now</h2>
-                  <p className="m-b30">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry has been the industry.
-                  </p>
-                  <ul className="list-inline m-a0">
-                    <li>
-                      <Link to={''} className="m-r10 text-white ">
-                        <i className="fa fa-facebook"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to={''} className="m-r10 text-white ">
-                        <i className="fa fa-google-plus"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to={''} className="m-r10 text-white ">
-                        <i className="fa fa-linkedin"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to={''} className="m-r10 text-white ">
-                        <i className="fa fa-instagram"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to={''} className="m-r10 text-white">
-                        <i className="fa fa-twitter"></i>
-                      </Link>
-                    </li>
-                  </ul>
                 </div>
               </div>
               <div className="col-lg-6 col-md-6">
@@ -161,20 +130,6 @@ function Login(props) {
             </div>
           </div>
         </div>
-        <footer className="login-footer">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12 text-center">
-                <span className="float-left">
-                  © Copyright by{' '}
-                  <i className="fa fa-heart m-lr5 text-red heart"></i>
-                  <Link to={'#'}>DexignZone </Link>{' '}
-                </span>
-                <span className="float-right">All rights reserved.</span>
-              </div>
-            </div>
-          </div>
-        </footer>
       </div>
     </div>
   );

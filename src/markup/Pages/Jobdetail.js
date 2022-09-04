@@ -319,7 +319,7 @@ function Jobdetail(props) {
           </div>
         </div>
       </div>
-      <Footer />
+       
     </>
   );
 }

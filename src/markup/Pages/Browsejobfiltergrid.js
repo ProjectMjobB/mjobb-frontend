@@ -132,7 +132,7 @@ function Browsejobfiltergrid() {
           </div>
         </div>
       </div>
-      <Footer />
+       
     </>
   );
 }

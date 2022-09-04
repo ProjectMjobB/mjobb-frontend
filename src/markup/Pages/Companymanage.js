@@ -576,7 +576,7 @@ function Companymanage() {
           </div>
         </div>
       </div>
-      <Footer />
+       
     </>
   );
 }

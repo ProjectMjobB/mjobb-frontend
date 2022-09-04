@@ -98,7 +98,7 @@ function EmployeeChangePass() {
           </div>
         </div>
       </div>
-      <Footer />
+       
     </>
   );
 }

@@ -315,7 +315,7 @@ const Company = (props) => {
           </div>
         </div>
       </div>
-      <Footer />
+       
     </>
   );
 };

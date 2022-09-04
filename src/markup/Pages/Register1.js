@@ -399,7 +399,7 @@ function Register1(props) {
           </div>
         </div>
       </div>
-      <Footer />
+       
     </>
   );
 }
