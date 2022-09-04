@@ -84,7 +84,7 @@ function Profilesidebar(props) {
             <li>
               <Link to={'/jobs-saved-jobs'}>
                 <i className="fa fa-heart-o" aria-hidden="true"></i>
-                <span>Saved Jobs</span>
+                <span>Favorites Jobs</span>
               </Link>
             </li>
             <li>
@@ -100,7 +100,7 @@ function Profilesidebar(props) {
 							<i className="fa fa-id-card-o" aria-hidden="true"></i> 
 							<span>CV Manager</span></Link></li> */}
             <li>
-              <Link to={'/jobs-change-password'}>
+              <Link to={'/employee-change-password'}>
                 <i className="fa fa-key" aria-hidden="true"></i>
                 <span>Change Password</span>
               </Link>

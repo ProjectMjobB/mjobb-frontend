@@ -57,6 +57,9 @@ import ScrollToTop from './Element/ScrollToTop';
 import Loginpage2 from './Pages/Loginpage2';
 import AuthenticatedRoute from '../services/AuthenticatedRoute';
 import CompanySeeComment from './Pages/CompanySeeComment';
+import Company from './Pages/Company';
+import EmployeeChangePass from './Pages/EmployeeChangePass';
+import CompanyJobEdit from './Pages/CompanyJobEdit';
 const Markup = () => {
   return (
     <>
@@ -91,6 +94,7 @@ const Markup = () => {
             path="/jobs-change-password"
             component={Changepasswordpage}
           />
+          <AuthenticatedRoute path="/company/:id" component={Company} />
           <AuthenticatedRoute
             path="/company-profile"
             component={Companyprofile}
@@ -99,6 +103,14 @@ const Markup = () => {
           <AuthenticatedRoute
             path="/company-post-jobs"
             component={Componypostjobs}
+          />
+          <AuthenticatedRoute
+            path="/company-post-edit/:id"
+            component={CompanyJobEdit}
+          />
+          <AuthenticatedRoute
+            path="/employee-change-password"
+            component={EmployeeChangePass}
           />
           <AuthenticatedRoute
             path="/company-manage-job"

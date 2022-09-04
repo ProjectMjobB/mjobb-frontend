@@ -136,7 +136,9 @@ function Jobdetail(props) {
                         <div className="col-lg-12 col-md-6">
                           <div className="m-b30">
                             <h3>Company Profile Link</h3>
-                            <Link>{jobInfo?.company.firstName}</Link>
+                            <Link to={`/company/${jobInfo?.company.id}`}>
+                              {jobInfo?.company.firstName}
+                            </Link>
                           </div>
                         </div>
                         <div className="col-lg-12 col-md-6">

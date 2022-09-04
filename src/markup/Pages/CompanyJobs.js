@@ -7,12 +7,14 @@ import axios from 'axios';
 import { Modal } from 'react-bootstrap';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import { useHistory } from 'react-router-dom';
 function CompanyJobs() {
   const [jobs, setJobs] = useState([]);
   const [company, setCompany] = useState(false);
   const [show, setShow] = useState(false);
   const [users, setUsers] = useState([]);
   const [matchUsers, setMatchUsers] = useState([]);
+  const history = useHistory();
   const fetchCompanyJobs = () => {
     axios
       .get('/api/v1.0/jobs/current-company-all-jobs')
@@ -94,7 +96,14 @@ function CompanyJobs() {
                                     </Link>
                                   </h5>
                                   <div>
-                                    <button className="job-links">
+                                    <button
+                                      onClick={() =>
+                                        history.push(
+                                          `/company-post-edit/${item?.id}`
+                                        )
+                                      }
+                                      className="job-links"
+                                    >
                                       <i className="fa fa-edit"></i>
                                     </button>
                                     <OverlayTrigger

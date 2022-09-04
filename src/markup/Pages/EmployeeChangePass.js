@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import Header from './../Layout/Header';
 import Footer from './../Layout/Footer';
 import CompanyLinks from '../Element/CompanyLinks';
+import Profilesidebar from '../Element/Profilesidebar';
 import axios from 'axios';
-function Changepasswordpage() {
+function EmployeeChangePass() {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [newPasswordValidate, setNewPasswordValidate] = useState('');
@@ -26,6 +27,7 @@ function Changepasswordpage() {
         alert(err.message);
       });
   };
+
   return (
     <>
       <Header />
@@ -34,7 +36,7 @@ function Changepasswordpage() {
           <div className="section-full bg-white browse-job p-t50 p-b20">
             <div className="container">
               <div className="row">
-                <CompanyLinks />
+                <Profilesidebar />
                 <div className="col-xl-9 col-lg-8 m-b30">
                   <div className="job-bx job-profile">
                     <div className="job-bx-title clearfix">
@@ -100,4 +102,4 @@ function Changepasswordpage() {
     </>
   );
 }
-export default Changepasswordpage;
+export default EmployeeChangePass;
