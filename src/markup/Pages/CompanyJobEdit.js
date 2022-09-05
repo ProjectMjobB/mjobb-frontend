@@ -93,11 +93,12 @@ const CompanyJobEdit = () => {
       workingType: company.workingType,
       description: company.description,
     });
+    setFile(company.file);
     setSelectedCategory(company?.category?.id);
     setSelectedType(company.jobType);
-    if (company.languages || company.tags) {
-      addTagAndLanguage(company?.tags, company?.languages);
-    }
+    // if (company.languages || company.tags) {
+    //   addTagAndLanguage(company?.tags, company?.languages);
+    // }
     // setLanguage(company.languages);
   }, [company, setCompany]);
   const addTagAndLanguage = (tags, languages) => {
@@ -139,28 +140,9 @@ const CompanyJobEdit = () => {
     const formData = inputs;
     formData['file'] = file;
     axios
-      .post(
-        `/api/v1.0/jobs/${selectedCategory}/${selectedType}/jobAdvertisements`,
-        formData
-      )
+      .put(`/api/v1.0/jobs/${id}`, formData)
       .then((res) => {
-        if (res.data) {
-          const id = res.data.id;
-          const tagData = field;
-          const langData = language;
-          if (id) {
-            axios
-              .post(`/api/v1.0/jobs/${id}/many-tags`, tagData)
-              .then((res) => {
-                console.log(res);
-              });
-            axios
-              .post(`/api/v1.0/jobs/${id}/many-languages`, langData)
-              .then((res) => {
-                console.log(res);
-              });
-          }
-        }
+        console.log(res);
       })
       .catch((err) => console.log(err));
   };
@@ -430,7 +412,6 @@ const CompanyJobEdit = () => {
           </div>
         </div>
       </div>
-       
     </>
   );
 };

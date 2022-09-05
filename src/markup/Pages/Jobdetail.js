@@ -295,7 +295,9 @@ function Jobdetail(props) {
                       <div className="dez-info p-a20 border-1">
                         <div className="dez-post-title ">
                           <h5 className="post-title">
-                            <Link to={'/blog-details'}>{item?.title}</Link>
+                            <Link to={'/job-detail/' + item?.id}>
+                              {item?.title}
+                            </Link>
                           </h5>
                         </div>
                         <div className="dez-post-meta ">
@@ -319,7 +321,6 @@ function Jobdetail(props) {
           </div>
         </div>
       </div>
-       
     </>
   );
 }
