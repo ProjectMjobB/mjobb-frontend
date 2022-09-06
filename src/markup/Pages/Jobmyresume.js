@@ -41,10 +41,8 @@ function Jobmyresume() {
 
     axios
       .put(`/api/v1.0/resume/${userId}`, {
-        params: {
           title: resumeInputs.title,
           description: resumeInputs.description,
-        },
       })
       .then((res) => {
         const data = res.data;

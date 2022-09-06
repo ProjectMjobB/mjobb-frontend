@@ -100,7 +100,7 @@ function Componypostjobs() {
         formData
       )
       .then((res) => {
-        if (res.data) {
+        if (res.data) { 
           const id = res.data.id;
           const tagData = field;
           const langData = language;

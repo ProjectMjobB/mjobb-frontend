@@ -289,7 +289,8 @@ function Jobdetail(props) {
             <div className="container">
               <h4>Those who applied to this also applied to these</h4>
               <div className="row">
-                {otherJobs.map((item, index) => (
+                {otherJobs !== null
+                 ? otherJobs.map((item, index) => (
                   <div className="col-xl-3 col-lg-6 col-md-6" key={index}>
                     <div className="m-b30 blog-grid">
                       <div className="dez-info p-a20 border-1">
@@ -315,7 +316,7 @@ function Jobdetail(props) {
                       </div>
                     </div>
                   </div>
-                ))}
+                )):""}
               </div>
             </div>
           </div>
